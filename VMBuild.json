@@ -1,0 +1,58 @@
+{
+	"variables": {
+		"iso": "http://mirror.optus.net/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1511.iso",
+		"isoChecksum": "c875b0f1dabda14f00a3e261d241f63e",
+		"isoChecksumType": "md5",
+		"diskSize": "20480",
+		"sshUser": "vagrant",
+		"sshPwd": "vagrant",
+		"vmRAM": "1024"
+	},
+	"builders": [{
+		"type": "virtualbox-iso",
+		"guest_os_type": "RedHat_64",
+		"iso_url": "{{user `iso`}}",
+		"iso_checksum": "{{user `isoChecksum`}}",
+		"iso_checksum_type": "{{user `isoChecksumType`}}",
+		"ssh_username": "{{user `sshUser`}}",
+		"ssh_password": "{{user `sshPwd`}}",
+		"ssh_port": "22",
+		"ssh_wait_timeout": "3600s",
+		"boot_wait": "10s",
+		"boot_command": [
+			"<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+		],
+		"disk_size": "{{user `diskSize`}}",
+		"format": "ovf",
+		"http_directory": "http",
+		"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+		"vboxmanage": [
+            ["modifyvm", "{{.Name}}", "--memory", "{{user `vmRAM`}}"],
+            ["modifyvm", "{{.Name}}", "--usb", "off"],
+            ["modifyvm", "{{.Name}}", "--audio", "none"]
+        ],
+		"guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+		"virtualbox_version_file": ".vbox_version"
+	}],
+	"provisioners": [
+		{
+			"type": "file",
+			"source": "resources/",
+			"destination": "/tmp"
+		},
+		{
+			"type": "shell",
+			"execute_command": "echo 'vagrant' | {{.Vars}} sudo -S '{{.Path}}'",
+			"scripts": [
+				"scripts/base.sh",
+				"scripts/vboxguestadditions.sh",
+				"scripts/jdk.sh",
+				"scripts/install-jce.sh",
+				"scripts/tomcat.sh",
+				"scripts/httpd.sh",
+				"scripts/self-cert.sh",
+				"scripts/install-ldap.sh"
+			]
+		}
+	]
+}

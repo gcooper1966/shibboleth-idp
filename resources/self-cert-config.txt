@@ -1,0 +1,22 @@
+RANDFILE               = $ENV::HOME/.rnd
+
+ [ req ]
+ default_bits           = 2048
+ default_keyfile        = keyfile.pem
+ distinguished_name     = req_distinguished_name
+ attributes             = req_attributes
+ prompt                 = no
+ output_password        = vagrant
+
+ [ req_distinguished_name ]
+ C                      = AU
+ ST                     = NSW
+ L                      = Sydney
+ O                      = Law of the Jungle Pty Ltd
+ OU                     = Development
+ CN                     = idp.lotj.com.au
+ emailAddress           = tech@lotj.com
+
+ [ req_attributes ]
+ challengePassword      = vagrant
+ 
