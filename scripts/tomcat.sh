@@ -1,3 +1,4 @@
+wget -O /tmp/apache-tomcat-8.0.30.tar.gz http://apache.uberglobalmirror.com/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz
 groupadd tomcat
 useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
 mkdir /opt/tomcat

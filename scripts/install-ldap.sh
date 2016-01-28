@@ -1,4 +1,4 @@
-yum -y install openldap openldap-clients openldap-servers
+yum -y install openldap-clients openldap-servers
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
 chown ldap. /var/lib/ldap/DB_CONFIG
 systemctl start slapd
