@@ -1,0 +1,15 @@
+dn: dc=lotj,dc=com,dc=au
+objectClass: dcObject
+objectClass: organization
+o: lotj.com.au
+dc: lotj
+
+dn: ou=users,dc=lotj,dc=com,dc=au
+objectClass: organizationalUnit
+objectClass: top
+ou: users
+
+dn: ou=groups,dc=lotj,dc=com,dc=au
+objectClass: organizationalUnit
+objectClass: top
+ou: groups

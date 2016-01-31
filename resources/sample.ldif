@@ -1,0 +1,65 @@
+# Example LDIF to load some data 
+# All passwords are 'password'
+#
+# Requires: 
+#   ou=people,dc=lotj,dc=com,dc=com to exist
+#   inetOrgPerson object class
+#   eduPerson object class (>= 201310, although older versions may work)
+
+dn: ou=dev,dc=lotj,dc=com,dc=au
+changetype: add
+objectclass: organizationalunit
+ou: dev
+
+dn: ou=legal,dc=lotj,dc=com,dc=au
+changetype: add
+objectclass: organizationalunit
+ou: legal
+
+dn: uid=sachin,ou=people,dc=lotj,dc=com,dc=au
+changetype: add
+objectClass: inetOrgPerson
+objectClass: eduperson
+userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+cn: Sachin Kaushik
+uid: sachin
+sn: Kaushik
+eduPersonOrgUnitDN: ou=dev,dc=lotj,dc=com,dc=au
+eduPersonOrgUnitDN: ou=people,dc=lotj,dc=com,dc=au
+eduPersonPrimaryOrgUnitDN: ou=person,dc=lotj,dc=com,dc=au
+
+dn: uid=graeme,ou=people,dc=lotj,dc=com,dc=au
+changetype: add
+objectClass: inetOrgPerson
+objectClass: eduperson
+userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+cn: Graeme Cooper
+uid: graeme
+sn: Cooper
+eduPersonOrgUnitDN: ou=dev,dc=lotj,dc=com,dc=au
+eduPersonOrgUnitDN: ou=people,dc=lotj,dc=com,dc=au
+eduPersonPrimaryOrgUnitDN: ou=dev,dc=lotj,dc=com,dc=au
+
+dn: uid=alvin,ou=people,dc=lotj,dc=com,dc=au
+changetype: add
+objectClass: inetOrgPerson
+objectClass: eduperson
+userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+cn: Alvin Leung
+uid: alvin
+sn: Leung
+eduPersonOrgUnitDN: ou=legal,dc=lotj,dc=com,dc=au
+eduPersonOrgUnitDN: ou=people,dc=lotj,dc=com,dc=au
+eduPersonPrimaryOrgUnitDN: ou=legal,dc=lotj,dc=com,dc=au
+
+dn: uid=greg,ou=people,dc=lotj,dc=com,dc=au
+changetype: add
+objectClass: inetOrgPerson
+objectClass: eduperson
+userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+cn: Greg San Miguel
+uid: greg
+sn: San Miguel
+eduPersonOrgUnitDN: ou=legal,dc=lotj,dc=com,dc=au
+eduPersonOrgUnitDN: ou=people,dc=lotj,dc=com,dc=au
+eduPersonPrimaryOrgUnitDN: ou=legal,dc=lotj,dc=com,dc=au

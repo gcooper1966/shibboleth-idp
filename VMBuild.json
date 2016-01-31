@@ -6,7 +6,8 @@
 		"diskSize": "20480",
 		"sshUser": "vagrant",
 		"sshPwd": "vagrant",
-		"vmRAM": "1024"
+		"vmRAM": "1024",
+		"vmHostName": "idp.lotj.domain"
 	},
 	"builders": [{
 		"type": "virtualbox-iso",
@@ -42,6 +43,10 @@
 		},
 		{
 			"type": "shell",
+			"inline":["hostnamectl set-hostname {{user `vmHostName`}}"]
+		}
+		{
+			"type": "shell",
 			"execute_command": "echo 'vagrant' | {{.Vars}} sudo -S '{{.Path}}'",
 			"scripts": [
 				"scripts/base.sh",
@@ -51,7 +56,7 @@
 				"scripts/tomcat.sh",
 				"scripts/httpd.sh",
 				"scripts/self-cert.sh",
-				"scripts/install-ldap.sh"
+				"scripts/shibboleth-idp.sh"
 			]
 		}
 	]
