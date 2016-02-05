@@ -10,15 +10,6 @@ if [ -d /opt/shibboleth-idp ]
 	then
 		echo "Created shibboleth target directory at /opt/shibboleth-idp."
 fi
-if [ -f /tmp/idp.properties ]
-	then
-		hostname = $(hostname)	
-		sed -i "/s/idp.host.name =.*/idp.host.name = $hostname/"
-		if [ $? -eq 0 ]
-			then
-				echo "Changed hostname in idp.properties"
-		fi
-fi
 /home/vagrant/shibboleth-idp3/bin/install.sh -Didp.property.file='/tmp/idp.properties'
 if [ -d /opt/shibboleth-idp/bin ]
 	then
@@ -26,14 +17,13 @@ if [ -d /opt/shibboleth-idp/bin ]
 	else
 		exit 3
 fi
-mv /tmp/idp.xml /opt/tomcat/conf/Catalina/localhost/idp.xml
 if [ $? -eq 0 ]
 	then
 		echo "Added shibboleth-idp war location to Tomcat"
 	else
 		exit 4
 fi
-mv /tmp/jstl-1.2.jar /opt/shibboleth-idp/edit-webapp/WEB-INF/lib/
+mv -f /tmp/jstl-1.2.jar /opt/shibboleth-idp/edit-webapp/WEB-INF/lib/
 if [ $? -eq 0 ]
 	then
 		echo "Adding JSP support to shibboleth-idp ..."
@@ -47,5 +37,7 @@ if [ $? -eq 0 ]
 	else
 		exit 4
 fi
+find /opt/shibboleth-idp/conf -type f -exec chmod 644 {} +
+cp /tmp/idp.xml /opt/tomcat/conf/Catalina/localhost/idp.xml
 echo "...Successfully completed shibboleth installation!"
 exit 0

@@ -1,13 +1,12 @@
 {
 	"variables": {
-		"iso": "http://mirror.optus.net/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1511.iso",
+		"iso": "CentOS-7-x86_64-DVD-1511.iso",
 		"isoChecksum": "c875b0f1dabda14f00a3e261d241f63e",
 		"isoChecksumType": "md5",
 		"diskSize": "20480",
 		"sshUser": "vagrant",
 		"sshPwd": "vagrant",
-		"vmRAM": "1024",
-		"vmHostName": "idp.lotj.domain"
+		"vmRAM": "1024"
 	},
 	"builders": [{
 		"type": "virtualbox-iso",
@@ -33,7 +32,8 @@
             ["modifyvm", "{{.Name}}", "--audio", "none"]
         ],
 		"guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-		"virtualbox_version_file": ".vbox_version"
+		"virtualbox_version_file": ".vbox_version",
+		"vm_name": "IDP{{timestamp}}"
 	}],
 	"provisioners": [
 		{
@@ -43,11 +43,7 @@
 		},
 		{
 			"type": "shell",
-			"inline":["hostnamectl set-hostname {{user `vmHostName`}}"]
-		}
-		{
-			"type": "shell",
-			"execute_command": "echo 'vagrant' | {{.Vars}} sudo -S '{{.Path}}'",
+			"execute_command": "sudo '{{.Path}}'",
 			"scripts": [
 				"scripts/base.sh",
 				"scripts/vboxguestadditions.sh",
@@ -56,6 +52,7 @@
 				"scripts/tomcat.sh",
 				"scripts/httpd.sh",
 				"scripts/self-cert.sh",
+				"scripts/install-ldap.sh",
 				"scripts/shibboleth-idp.sh"
 			]
 		}

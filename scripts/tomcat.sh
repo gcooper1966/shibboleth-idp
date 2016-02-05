@@ -11,4 +11,3 @@ chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/to
 cp /tmp/tomcat.service /etc/systemd/system/tomcat.service
 systemctl daemon-reload
 systemctl enable tomcat
-systemctl start tomcat

@@ -19,4 +19,4 @@ ldapadd -x -w vagrant -D cn=Manager,dc=lotj,dc=com,dc=au -f /tmp/base.ldif
 # add the people organization unit
 ldapmodify -H ldapi:/// -x -w vagrant -D cn=Manager,dc=lotj,dc=com,dc=au -f /tmp/people.ldif
 # add some people to the directory
-#ldapmodify -H ldapi:/// -x -w vagrant -D cn=Manager,dc=lotj,dc=com,dc=au -f /tmp/sample.ldif
+ldapmodify -H ldapi:/// -x -w vagrant -D cn=Manager,dc=lotj,dc=com,dc=au -f /tmp/sample.ldif
