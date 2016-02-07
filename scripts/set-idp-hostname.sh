@@ -1,0 +1,1 @@
+hostnamectl set-hostname idp.lotj.com.au
