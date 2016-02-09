@@ -53,7 +53,8 @@
 				"scripts/tomcat.sh",
 				"scripts/httpd.sh",
 				"scripts/self-cert.sh",
-				"scripts/install-ldap.sh"
+				"scripts/install-ldap.sh",
+				"scripts/shibboleth-idp.sh"
 			]
 		}
 	]

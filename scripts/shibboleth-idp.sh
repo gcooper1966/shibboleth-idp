@@ -13,7 +13,7 @@ if [ -d /opt/shibboleth-idp ]
 	then
 		echo "Created shibboleth target directory at /opt/shibboleth-idp."
 fi
-/home/vagrant/shibboleth-idp3/bin/install.sh -Didp.property.file='/tmp/idp.properties'
+/home/vagrant/shibboleth-idp3/bin/install.sh -Didp.property.file='/tmp/idpbuild.properties'
 if [ -d /opt/shibboleth-idp/bin ]
 	then
 		echo "Installed shibboleth idp to /opt/shibboleth-idp"
@@ -41,6 +41,8 @@ if [ $? -eq 0 ]
 		exit 4
 fi
 find /opt/shibboleth-idp/conf -type f -exec chmod 644 {} +
+echo "Updated shibboleth permissions"
 cp /tmp/idp.xml /opt/tomcat/conf/Catalina/localhost/idp.xml
+chown tomcat. /opt/tomcat/conf/Catalina/localhost/idp.xml
 echo "...Successfully completed shibboleth installation!"
 exit 0
