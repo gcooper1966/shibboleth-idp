@@ -4,6 +4,7 @@ useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
 mkdir /opt/tomcat
 tar xvf /tmp/apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
 cp /tmp/tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml
+cp /tmp/server.xml /opt/tomcat/conf/server.xml
 chgrp -R tomcat /opt/tomcat/conf
 chmod g+wrx /opt/tomcat/conf
 chmod g+r /opt/tomcat/conf/*
