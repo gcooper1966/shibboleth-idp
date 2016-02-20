@@ -47,6 +47,7 @@
 			"scripts": [
 				"scripts/base.sh",
 				"scripts/vboxguestadditions.sh",
+				"scripts/set-idp-hostname.sh",
 				"scripts/jdk.sh",
 				"scripts/install-jce.sh",
 				"scripts/tomcat.sh",
