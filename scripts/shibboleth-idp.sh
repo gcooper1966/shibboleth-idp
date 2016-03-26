@@ -49,9 +49,12 @@ if [ ! -d /opt/tomcat/conf/Catalina/localhost ]
 		echo "Creating Catalina directory"
 		mkdir  -p /opt/tomcat/conf/Catalina/localhost
 		chown -R tomcat. /opt/tomcat/conf/Catalina
+	else
+		echo 
 fi
 cp /tmp/idp.xml /opt/tomcat/conf/Catalina/localhost/idp.xml
 chown tomcat. /opt/shibboleth-idp/conf/idp.properties /opt/shibboleth-idp/conf/ldap.properties
 chown tomcat. /opt/tomcat/conf/Catalina/localhost/idp.xml
+chown -R tomcat. /opt/shibboleth-idp/credentials/
 echo "...Successfully completed shibboleth installation!"
 exit 0
